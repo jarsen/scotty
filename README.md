@@ -1,7 +1,7 @@
 #Scotty
 ![transporter room](http://www.mindpollution.org/wp-content/uploads/2013/05/beam-me-up-star-trek.jpg)
 
-Scotty is a simple minecraft plugin written for the [bukkit minecraft server](http://dl.bukkit.org) supporting several simple teleportation related commands. This is definitely not ready yet to run on a server if you are afraid of griefers.
+Scotty is a simple[bukkit minecraft server](http://dl.bukkit.org) plugin supporting several simple teleportation related commands. This is definitely not ready yet to run on a public server because it will undoubtedly lead to much griefing.
 
 Since this is written in clojure it's obviously cooler than any plugins written in Java. No, but for real [clj-minecraft](https://github.com/CmdrDats/clj-minecraft) gives you some nice things for free, like tab autocompletion for certain command arguments (like players). For example, start doing the `/tp' command and start typing in a players name and then hit tab—et voila—the players name is autocompleted. Great for players with long or mispelled names.
 
