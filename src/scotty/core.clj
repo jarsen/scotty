@@ -34,10 +34,9 @@
 (defn teleport-home
   "Teleport sender to where they last slept."
   [sender]
-  (let [location (.getBedSpawnLocation sender)]
-    (if location
-      (.teleport sender location)
-      {:msg "You must have a valid bed spawn location."})))
+  (if-let [location (.getBedSpawnLocation sender)]
+    (.teleport sender location)
+    {:msg "You must have a valid bed spawn location."}))
 
 (defn beam
   "Beam sender to specified beacon"
