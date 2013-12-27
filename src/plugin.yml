@@ -1,0 +1,30 @@
+name: scotty
+main: cljminecraft.ClojurePlugin
+version: 0.0.2
+author: _jarsen
+description: "Beam me up, Scotty!"
+depend: [cljminecraft]
+#unneeded: class-loader-of: cljminecraft
+commands:
+  tp:
+    description: Beam yourself to another player. (tab for autocomplete)
+    usage: /tp <target-player-name>
+  home:
+    description: Beam yourself back to where you last slept.
+    usage: /home
+  summon:
+    description: Beam another player to you. (tab for autocomplete)
+    usage: /summon <target-player-name>
+  set-beacon:
+    description: Place a beacon at current location.
+    usage: /place-beacon
+  beam:
+    description: Beam yourself to previously placed beacon.
+    usage: /beam <name-of-beacon>
+  list-beacons:
+    description: See a list of your placed beacons.
+    usage: /list-beacons
+# permissions:
+#   scotty.dosomething:
+#     description: Does something, I'm sure
+#     default: op
