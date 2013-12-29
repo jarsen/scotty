@@ -12,8 +12,7 @@
               [cljminecraft.items :as i]
               [cljminecraft.files :as f]
               [clojure.string :as str])
-    (:import (org.bukkit Location)
-             (org.bukkit.scheduler BukkitRunnable)))
+    (:import (org.bukkit Location)))
 
 (defonce plugin (atom nil))
 
