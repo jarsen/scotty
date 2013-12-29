@@ -15,10 +15,7 @@
     (:import (org.bukkit Location)
              (org.bukkit.scheduler BukkitRunnable)))
 
-;; Mutable data
-
 (defonce plugin (atom nil))
-(def beacons (atom {}))
 
 ;; Custom Commands
 
@@ -43,12 +40,14 @@
     (.teleport sender location)
     {:msg "You must have a valid bed spawn location."}))
 
+;; Beacons
+
+(def beacons (atom {}))
+
 (defn beam
   "Beam sender to specified beacon"
-  [sender beacon-name]
-  (if-let [location (@beacons beacon-name)]
-    (.teleport sender location)
-    {:msg (format "Cannot find beacon named %s" beacon-name)}))
+  [sender location]
+  (.teleport sender location))
 
 (defn set-beacon
   "Set a beacon at the sender's current location"
@@ -61,6 +60,12 @@
   [sender]
   (.sendRawMessage sender "---- Beacons ----")
   (.sendRawMessage sender (str/join \newline (keys @beacons))))
+
+(defmethod cmd/convert-type :beacon [sender type arg]
+  (@beacons arg))
+
+(defmethod cmd/param-type-tabcomplete :beacon [sender type arg]
+  (filter #(.startsWith % arg) (keys @beacons)))
 
 ;; Beacon Persistence
 
@@ -103,13 +108,15 @@
     (for [[k v] (f/read-json-file @plugin beacon-file)]
       [(name k) (map-to-location v)])))
 
+;; Running the server
+
 (defn register-commands []
   (cmd/register-command @plugin "tp" #'teleport-to-player :player)
   (cmd/register-command @plugin "summon" #'summon-player :player)
   (cmd/register-command @plugin "home" #'teleport-home)
-  (cmd/register-command @plugin "beam" #'beam :string)
+  (cmd/register-command @plugin "beam" #'beam :beacon)
   (cmd/register-command @plugin "set-beacon" #'set-beacon :string)
-  (cmd/register-command @plugin "list-beacons" #'list-beacons :string))
+  (cmd/register-command @plugin "list-beacons" #'list-beacons))
 
 (defn start
   [plugin-instance]

@@ -17,9 +17,9 @@ commands:
     usage: /summon <target-player-name>
   set-beacon:
     description: Place a beacon at current location.
-    usage: /place-beacon
+    usage: /set-beacon
   beam:
-    description: Beam yourself to previously placed beacon.
+    description: Beam yourself to previously placed beacon. (tab for autocomplete)
     usage: /beam <name-of-beacon>
   list-beacons:
     description: See a list of your placed beacons.
